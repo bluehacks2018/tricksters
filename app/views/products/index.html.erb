@@ -1,0 +1,31 @@
+<% if !@products.empty? %> <!---May ! dapat-->
+  <% if seller_signed_in? %>  
+  <h1 class="center"> Products For Sale</h1>
+  <% end %>
+
+  <div class="container">
+    <div class="row">
+      <% @products.each do |p| %>
+       <%= puts p.picture.inspect %>
+      <div class="col s3">
+        <% if !p.picture.attached?%>
+        <%= image_tag("default.png", size: "320x200", :class => "responsive-img")%>   
+        <% else %>
+        <%= image_tag(p.picture, size: "320x200", :class => "responsive-img") unless p.picture.blank? %>
+        <% end%>
+        <h4 class="center-align" style="font-weight: bold"><%= p.name %></h4>
+        <h5 class="center-align">Price: P<%= p.price %></h5>
+        <h5 class="center-align">Quantity: <%= p.quantity %> units</h5>
+        <p class="center-align"><%= link_to 'View Product', product_path(p), class: 'btn' %></p>
+      </div>
+      
+      <% end %>
+    </div>
+  </div>
+<% else %>
+<% if seller_signed_in? %> 
+  <h3 class="center-align">You haven't posted any product yet!</h3>
+<% else %>
+   <h3 class="center-align">No products yet</h3>
+<%end%>
+<% end %>

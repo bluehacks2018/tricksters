@@ -1,0 +1,38 @@
+<div class="main-container" style="display: flex; width: 100%; height: 100vh;">
+  
+  
+  <div class="left-card" style="width: 50%; background-color: #936060;">
+    
+    <div class="left-card-content" style="display: flex;" >
+        <%= image_tag("logo.png", size: "320x200", style: "top: 50%; left:25%; transform: translate(-50%, -50%); position: fixed;  display:block;") %>
+    </div>
+  </div>
+  
+  <div class="right-card" style="width: 50%; display: flex">
+      
+    
+    <div class="right-card-content" style="margin: auto">
+      
+        <h3 style="margin-bottom: 15px;">Buyer Login</h3>
+        
+       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email, required: false, autofocus: true %>
+          <%= f.input :password, required: false %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+    
+        <div class="form-actions">
+          <%= f.button :submit, "Log in" %>
+        </div>
+      <% end %>
+    
+    <%= render "buyers/shared/links" %>
+        
+    </div>
+     
+    
+    
+  </div>
+
+</div>

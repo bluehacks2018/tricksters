@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%= favicon_link_tag 'favicon.png' %>
+    <title>RubShop: Building Zero Waste Communities</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% if supplier_signed_in? || buyer_signed_in? || seller_signed_in? %>
+    <%= render 'layouts/navigation' %>
+    <% end %>
+    <script>
+     $(document).ready(function(){
+        Materialize.toast('<%= notice %>',6000);
+     });
+    </script>
+    <% if notice %>
+      <script>Materialize.toast('<%= notice %>',6000)</script>
+    <% end %>
+    <% if alert %>
+      <script>Materialize.toast('<%= alert %>',6000)</script>
+    <% end %>
+    
+      <%= yield %>   
+  </body>
+</html>
