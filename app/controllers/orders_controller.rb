@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    before_action :set_seller, except: [:index, :order, :show, :approve]
+    before_action :set_seller, except: [:index, :order, :show]
     def index
         if buyer_signed_in?
             @orders = Order.all.where(buyer_id: current_buyer.id)            
@@ -26,9 +26,6 @@ class OrdersController < ApplicationController
         else
             render :new
         end
-    end
-    def approve
-
     end
     private
         def order_params
